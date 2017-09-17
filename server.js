@@ -107,7 +107,7 @@ app.get('/setupdb',function(req,res){
   if (db) {
 	  //var collection = req.body.collection;
 	  db.createCollection("admin",function(){});
-  } else {
+	  res.status(200).send("success");
   }
 });
 
@@ -121,7 +121,6 @@ app.post('/createadmin',function(req,res){
 			  db.collection("admin").insertOne({name : req.body.admin.name , mail : req.body.admin.mail , password : req.body.admin.password},function(){});
 		  }
 	  });
-  } else {
   }
 });
 
