@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="script/jquery-3.2.1.min.js"></script>
+<title>Admin</title>
+</head>
+<body>
+<button id="setupdb">Setup Mongo DB</button>
+<script>
+	$(document).ready(function(){
+		$("#setupdb").click(function(){
+			$.post("/setupdb",{},function(){alert("DB setup is success!!")});
+		});
+	});
+</script>
+<br><br><br>
+<form action="/createAdmin" method="post">
+Admin name : <input type="text" name="admin[name]"/><br>
+Admin mail : <input type="text" name="admin[mail]"/><br>
+Admin password : <input type="password" name="admin[password]"/><br>
+<input type="submit" value="Create Admin"/>
+</form>
+</body>
+</html>

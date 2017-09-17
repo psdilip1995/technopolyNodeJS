@@ -96,6 +96,37 @@ app.get('/login',function(req, res){
 	res.render('login.html',{});
 });
 
+app.post('/setupdb',function(req,res){
+	if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+	  db.createCollection("users",function(){});
+	  db.createCollection("admin",function(){});
+	  db.createCollection("violet",function(){});
+	  db.createCollection("blue",function(){});
+	  db.createCollection("red",function(){});
+	  db.createCollection("gold",function(){});
+	  db.createCollection("market",function(){});
+	  db.createCollection("logs",function(){});
+  } else {
+  }
+});
+
+app.post('/createadmin',function(req,res){
+	if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+	  db.collection("admin").find({mail : req.body.admin.mail}).toArray(function(err,result){
+		  if(result == NULL){
+			  db.collection("admin").insertOne({name : req.body.admin.name , mail : req.body.admin.mail , password : req.body.admin.password},function(){});
+		  }
+	  });
+  } else {
+  }
+});
+
 
 app.get('/show', function (req, res) {
   // try to initialize the db on every request if it's not already
@@ -104,7 +135,7 @@ app.get('/show', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-    db.collection('counts').find({}).toArray(function(err, count ){
+    db.collection('admin').find({}).toArray(function(err, count ){
       res.send('{ values ' + JSON.stringify(count) + '}');
     });
   } else {
