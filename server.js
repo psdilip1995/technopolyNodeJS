@@ -105,14 +105,8 @@ app.post('/setupdb',function(req,res){
     initDb(function(err){});
   }
   if (db) {
-	  db.createCollection("users",function(){});
-	  db.createCollection("admin",function(){});
-	  db.createCollection("violet",function(){});
-	  db.createCollection("blue",function(){});
-	  db.createCollection("red",function(){});
-	  db.createCollection("gold",function(){});
-	  db.createCollection("market",function(){});
-	  db.createCollection("logs",function(){});
+	  var collection = req.body.collection;
+	  db.createCollection(collection,function(){});
   } else {
   }
 });

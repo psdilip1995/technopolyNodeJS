@@ -1,18 +1,9 @@
 <html>
 <head>
-<script src="script/jquery-3.2.1.min.js"></script>
 <title>Admin</title>
 </head>
 <body>
-<button id="setupdb">Setup Mongo DB</button>
-<script>
-	$(document).ready(function(){
-		$("#setupdb").click(function(){
-			$.post("/setupdb",{},function(){alert("DB setup is success!!")});
-		});
-	});
-</script>
-<form action="/setupdb" method="post"><input type="submit" value="Setup Mongp DB 2"/></form>
+<form action="/setupdb" method="get">collection name : <input type="text" name="collection"/><br><input type="submit" value="Setup Mongp DB 2"/></form>
 <br><br><br>
 <form action="/createAdmin" method="post">
 Admin name : <input type="text" name="admin[name]"/><br>
