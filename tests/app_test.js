@@ -59,7 +59,7 @@ describe('Basic routes tests', function() {
 
     })
 	
-	it('POST to /createadmin should return 200', function(done){
+	/*it('POST to /createadmin should return 200', function(done){
         chai.request(reqServer)
         .post('/createadmin')
         .end(function(err, res) {
@@ -67,7 +67,7 @@ describe('Basic routes tests', function() {
             done();
         })
 
-    })
+    })*/
 	
 	it('GET to /admin should return 200', function(done){
         chai.request(reqServer)
