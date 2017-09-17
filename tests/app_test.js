@@ -68,4 +68,14 @@ describe('Basic routes tests', function() {
         })
 
     })
+	
+	it('GET to /admin should return 200', function(done){
+        chai.request(reqServer)
+        .get('/show')
+        .end(function(err, res) {
+            res.should.have.status(200);
+            done();
+        })
+
+    })
 })

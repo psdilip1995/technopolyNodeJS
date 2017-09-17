@@ -96,6 +96,10 @@ app.get('/login',function(req, res){
 	res.render('login.html',{});
 });
 
+app.get('/admin',function(req, res){
+	res.render('admin.html',{});
+});
+
 app.post('/setupdb',function(req,res){
 	if (!db) {
     initDb(function(err){});
