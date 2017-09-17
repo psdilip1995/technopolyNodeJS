@@ -100,7 +100,7 @@ app.get('/admin',function(req, res){
 	res.render('admin.html',{});
 });
 
-app.post('/setupdb',function(req,res){
+app.get('/setupdb',function(req,res){
 	if (!db) {
     initDb(function(err){});
   }

@@ -41,7 +41,7 @@ describe('Basic routes tests', function() {
 	
 	it('GET to /login should return 200', function(done){
         chai.request(reqServer)
-        .get('/show')
+        .get('/login')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
@@ -51,7 +51,7 @@ describe('Basic routes tests', function() {
 	
 	it('GET to /setupdb should return 200', function(done){
         chai.request(reqServer)
-        .get('/show')
+        .get('/setupdb')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
@@ -59,9 +59,9 @@ describe('Basic routes tests', function() {
 
     })
 	
-	it('GET to /createadmin should return 200', function(done){
+	it('POST to /createadmin should return 200', function(done){
         chai.request(reqServer)
-        .get('/show')
+        .post('/createadmin')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
@@ -71,7 +71,7 @@ describe('Basic routes tests', function() {
 	
 	it('GET to /admin should return 200', function(done){
         chai.request(reqServer)
-        .get('/show')
+        .get('/admin')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
