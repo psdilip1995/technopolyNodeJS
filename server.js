@@ -105,8 +105,8 @@ app.get('/setupdb',function(req,res){
     initDb(function(err){});
   }
   if (db) {
-	  var collection = req.body.collection;
-	  db.createCollection(collection,function(){});
+	  //var collection = req.body.collection;
+	  db.createCollection("admin",function(){});
   } else {
   }
 });
