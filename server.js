@@ -91,6 +91,21 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/show', function (req, res) {
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    db.collection('counts').find({}).toArray(function(err, count ){
+      res.send('{ values ' + count + '}');
+    });
+  } else {
+    res.send('{ pageCount: -1 }');
+  }
+});
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
