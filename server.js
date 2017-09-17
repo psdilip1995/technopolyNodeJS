@@ -92,6 +92,11 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/login',function(req, res){
+	res.render('login.html',{});
+});
+
+
 app.get('/show', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
