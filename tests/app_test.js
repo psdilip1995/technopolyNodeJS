@@ -54,9 +54,9 @@ describe('Basic routes tests', function() {
         .get('/setupdb')
         .end(function(err, res) {
             res.should.have.status(200);
-            done();
+            
         })
-
+		done();
     })
 	
 	/*it('POST to /createadmin should return 200', function(done){
