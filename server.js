@@ -99,7 +99,7 @@ app.get('/show', function (req, res) {
   }
   if (db) {
     db.collection('counts').find({}).toArray(function(err, count ){
-      res.send('{ values ' + count + '}');
+      res.send('{ values ' + JSON.stringify(count) + '}');
     });
   } else {
     res.send('{ pageCount: -1 }');
