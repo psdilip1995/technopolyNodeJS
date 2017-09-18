@@ -63,10 +63,12 @@ app.get('/', function (req, res) {
     // Create a document with request IP and current time of request
     col.insert({ip: req.ip, date: Date.now()});
     col.count(function(err, count){
-      res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
+      //res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
+	  res.send("success");
     });
   } else {
-    res.render('index.html', { pageCountMessage : null});
+    //res.render('index.html', { pageCountMessage : null});
+	res.send("Fail");
   }
 });
 
