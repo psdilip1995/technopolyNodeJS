@@ -39,3 +39,7 @@ app.get('/',function(req, res){
 app.get('/scan',function(req, res){
 	res.send('This page is used for probing by openshift pod!');
 });
+
+app.get('/pagecount',function(req, res){
+	res.send('This is used by pods to keep active');
+});
