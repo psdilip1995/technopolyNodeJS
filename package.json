@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-ex",
-  "version": "0.0.1",
-  "description": "Node.js sample app for OpenShift 3",
+  "name": "Technopoly",
+  "version": "2.0",
+  "description": "Technopoly Website",
   "main": "server.js",
   "dependencies": {
     "express": "^4.13.4",
@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/openshift/nodejs-ex.git"
+    "url": "https://github.com/psdilip1995/technopolyNodeJS2"
   },
-  "author": "Steve Speicher <sspeiche@gmail.com>",
+  "author": "Dilip Srinivasa",
   "license": "CC-BY-1.0",
   "bugs": {
-    "url": "http://github.com/openshift/nodejs-ex/issues"
+    "url": "https://github.com/psdilip1995/technopolyNodeJS2/issues"
   },
-  "homepage": "http://github.com/openshift/nodejs-ex"
+  "homepage": "https://github.com/psdilip1995/technopolyNodeJS2"
 }
