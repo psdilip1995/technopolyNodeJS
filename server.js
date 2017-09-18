@@ -1,14 +1,7 @@
-//  OpenShift sample Node application
-var express = require('express'),
-    fs      = require('fs'),
-    app     = express(),
-    eps     = require('ejs'),
-    morgan  = require('morgan');
-    
-Object.assign=require('object-assign')
-
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -34,123 +27,11 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
-var db = null,
-    dbDetails = new Object();
 
-var initDb = function(callback) {
-  if (mongoURL == null) return;
+mongoose.connect(monogoURL);
 
-  var mongodb = require('mongodb');
-  if (mongodb == null) return;
+var db = mongoose.connection;
 
-  mongodb.connect(mongoURL, function(err, conn) {
-    if (err) {
-      callback(err);
-      return;
-    }
-
-    db = conn;
-    dbDetails.databaseName = db.databaseName;
-    dbDetails.url = mongoURLLabel;
-    dbDetails.type = 'MongoDB';
-
-    console.log('Connected to MongoDB at: %s', mongoURL);
-  });
-};
-
-app.get('/', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  //if (!db) {
-  //  initDb(function(err){});
-  //}
-  //if (db) {
-  //  var col = db.collection('counts');
-    // Create a document with request IP and current time of request
-    //col.insert({ip: req.ip, date: Date.now()});
-    //col.count(function(err, count){
-    //  res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
-    //});
-  //} else {
-  //  res.render('index.html', { pageCountMessage : null});
-  //}
-  res.render('index.html',{});
+app.get('/',function(req, res){
+	res.send('Hello World!');
 });
-
-app.get('/pagecount', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    db.collection('counts').count(function(err, count ){
-      res.send('{ pageCount: ' + count + '}');
-    });
-  } else {
-    res.send('{ pageCount: -1 }');
-  }
-});
-
-app.get('/login',function(req, res){
-	res.render('login.html',{});
-});
-
-app.get('/admin',function(req, res){
-	res.render('admin.html',{});
-});
-
-app.get('/setupdb',function(req,res){
-	if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-	  //var collection = req.body.collection;
-	  db.createCollection("admin",function(){});
-	  //res.send("success");
-  }
-});
-
-app.post('/createadmin',function(req,res){
-	if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-	  db.collection("admin").find({mail : req.body.admin.mail}).toArray(function(err,result){
-		  if(result == NULL){
-			  db.collection("admin").insertOne({name : req.body.admin.name , mail : req.body.admin.mail , password : req.body.admin.password},function(){});
-		  }
-	  });
-  }
-});
-
-
-app.get('/show', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    db.collection('admin').find({}).toArray(function(err, count ){
-      res.send('{ values ' + JSON.stringify(count) + '}');
-    });
-  } else {
-    res.send('{ pageCount: -1 }');
-  }
-});
-
-// error handling
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.status(500).send('Something bad happened!');
-});
-
-initDb(function(err){
-  console.log('Error connecting to Mongo. Message:\n'+err);
-});
-
-app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
-
-module.exports = app ;
