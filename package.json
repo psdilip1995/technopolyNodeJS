@@ -4,6 +4,7 @@
   "description": "Technopoly Game",
   "main": "server.js",
   "scripts": {
+	"start": "node server.js"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -11,9 +12,13 @@
     "body-parser": "*",
     "mongoose": "*"
   },
+  "engine":{
+	  "node": "*",
+	  "npm": "*"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/psdilip1995/technopolyNodeJS2.git"
+    "url": "https://github.com/psdilip1995/technopolyNodeJS2.git"
   },
   "author": "Srinivasa Dilip",
   "license": "ISC",
