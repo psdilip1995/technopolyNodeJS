@@ -35,3 +35,7 @@ var db = mongoose.connection;
 app.get('/',function(req, res){
 	res.send('Hello World!');
 });
+
+app.get('/scan',function(req, res){
+	res.send('This page is used for probing by openshift pod!');
+});
