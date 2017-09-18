@@ -59,7 +59,7 @@ app.get('/', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-    var col = db.collection('counts');
+    var col = db.collection('demo');
     // Create a document with request IP and current time of request
     col.insert({ip: req.ip, date: Date.now()});
     col.count(function(err, count){
@@ -79,7 +79,7 @@ app.get('/pagecount', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-    db.collection('counts').count(function(err, count ){
+    db.collection('demo').count(function(err, count ){
       res.send('{ pageCount: ' + count + '}');
     });
   } else {
