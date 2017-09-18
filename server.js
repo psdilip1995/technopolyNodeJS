@@ -43,3 +43,8 @@ app.get('/scan',function(req, res){
 app.get('/pagecount',function(req, res){
 	res.send('This is used by pods to keep active');
 });
+
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
+
+module.exports = app ;

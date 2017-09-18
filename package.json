@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "mongodb": "^2.1.16",
-"body-parser": "*",
+    "body-parser": "*",
     "mongoose": "*"
   },
   "engine": {
